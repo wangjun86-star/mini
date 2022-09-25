@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const mysql = require("./model.js");
 const { init: initDB, Counter } = require("./db");
 
 const logger = morgan("tiny");
