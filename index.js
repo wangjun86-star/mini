@@ -48,6 +48,32 @@ app.get("/api/wx_openid", async (req, res) => {
     res.send(req.headers["x-wx-openid"]);
   }
 });
+//操作数据库
+app.get('/query',async function(req,res,next){
+    if(Object.keys(req.query).length !== 0){
+        const ret =await mysql.query(req.query.sql)
+        mysql.savelog()
+        res.send(ret)
+        return
+    }else{
+        console.log(`no param`)
+        res.send({err:'no param input'})
+        return
+    }
+})
+app.post('/query',async function(req,res,next){
+    if(Object.keys(req.query).length !== 0){
+        const ret =await mysql.query(req.query.sql)
+        mysql.savelog()
+        res.send(ret)
+        return
+    }else{
+        console.log(`no param`)
+        res.send({err:'no param input'})
+        return
+    }
+})
+
 
 const port = process.env.PORT || 80;
 
